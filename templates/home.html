@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div id="home" class="banner-area section-padding">
+        <div class="bg-overlay black"></div>
+        <div class="containter">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="welcome-text">
+                        <div class="name-area wow fadeInDown" data-wow-delay="0.2s">Hello, my name is Hyeseong</div>
+                        <h1 class="wow fadeInDown" data-wow-delay="0.4s">Create Innovative application with me</h1>
+                        <a href="#about" class="my-btn-1 wow fadeInDown" data-wow-delay="0.6s">Learn more</a>
+                        <!-- <a href="https://www.github.com/hyeseong-dev/" class="my-btn-2 wow fadeInDown">My Github</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    About section#}
+
+    <div id="about" class="about-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-sn-8 col-xs-12 wow fadeInLeft" data-wow-delay="0.2s">
+                    <div class="about-left">
+                        <h2 class="section-title">About Me</h2>
+                        <div class="line"></div>
+                        <h4>{{ about.short_description }}</h4>
+                        <p>웹 서비스 개발/배포/운영에 관심이 많으며 추후 멋진 시니어 개발자가 되는 것이  목표입니다.
+                        현재는 작은 웹앱 토이프로젝트를 꾸준히 하고 있으며 Github에 1일1commit 약속을 꾸준히 이행해 나가고 있습니다.
+                        <br>
+
+                        <p>개발과 배포 그리고 운영을 적절히 할 수 있는 역량과 기존 데이터를 이용하여 유저들을 이해하고자 노력할 것입니다.
+                        무엇보다 이 직군에서 혼자서는 할 수 없지만 함께 하면 할 수 있다는 말처럼 다양한 직무의 팀 구성원들과 적극적인 커뮤니케이션을 통해 협업에 힘쓰겠습니다.</p>
+                        <!-- <a href="images/about/cv.jpg" download>Download CV&nbsp;<i class="fa fa-download"></i></a> -->
+                    </div>
+                </div>
+                <div class="col-md-5 visible-md visible-lg wow fadeInDown" data-wow-delay="0.6s">
+                    <div class="profile">
+                        <img src="{{ about.image.url }}" alt="Profile image" class="img-responsive" height='50%'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    Services Section#}
+    <div id="services" class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-header text-center">
+                        <h2>Services I offer</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for service in services %}
+
+                    <div class="col-md-4 col-sm-4">
+                        <div class="single-service wow fadeInDown" data-wow-delay="0.2s">
+                            <i class="icon icon-wallet"></i>
+                            <h2>{{ service.name }}</h2>
+                            <p>{{ service.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {#    Recent Works Section#}
+    <div id="portfolio" class="portfolio-area section-padding">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-header">
+                        <h2>My Recent Works</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for work in works %}
+                    <div class="col-md-4 col-sm-4 col-xs-12 no-padding">
+                        <div class="gallery-items">
+                            <a class="view img" href="{{ work.image.url }}">
+                                <img src="{{ work.image.url }}" alt="work image" with=200px height=200px>
+                            </a>
+
+                            <div class="gallery-text">
+                                <h2>{{ work.title }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {#    Contact section#}
+
+    <div class="invitation-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="single-invite text-center">
+                    <h2>Github페이지와 Blog를 통해 더 자세히 확인 할 수 있습니다.</h2>
+                    <a href="https://github.com/hyeseong-dev" target="_blank" >Github: hyeseong-dev</a>
+                    <a href="https://hyeseong-dev.github.io/" target="_blank" >Blog Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="contact" class="contact-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-header text-center">
+                        <h2>Contact Me</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 box-contact-form">
+
+                    <form id="contact-form" method="post" action="/">
+                        {% csrf_token %}
+                        <div class="messages"></div>
+
+                        <div class="controls">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group wow fadeInDown" data-wow-delay="0.2s">
+                                        <input id="form_name" type="text" name="subject" class="form-control"
+                                               placeholder="Enter your email of subject *" required="required"
+                                               data-error="Subject is required.">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group wow fadeInDown" data-wow-delay="0.4s">
+                                        <input id="form_email" type="email" name="email" class="form-control"
+                                               placeholder="Enter your email *" required="required"
+                                               data-error="Valid email is required.">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group wow fadeInUp" data-wow-delay="0.6s">
+                                        <textarea id="form_message" name="message" class="form-control"
+                                                  placeholder="Your Message *" rows="4" required="required"
+                                                  data-error="Leave a message for me"></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input class="btn btn-send" type="submit" value="submit"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+
+{% endblock %}
